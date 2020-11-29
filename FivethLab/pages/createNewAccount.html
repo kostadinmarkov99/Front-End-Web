@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width = device-width, initial-scale = 1">
+	<link rel="stylesheet" href="resources\bootstrap\dist\css\bootstrap.min.css"> 
+	<link rel="stylesheet" href="resources\bootstrap\dist\css\bootstrap-theme.min.css"> 
+
+    <style>   
+    body, html {   
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display:table;
+}
+        Body {  
+            font-family: Calibri, Helvetica, sans-serif; 
+            background: linear-gradient(-100deg, #A2F2F1 0%, #B19AFE 100%);
+            font-size: 16px;
+            display:table-cell;
+            vertical-align:middle;
+        }  
+        button {   
+                    background-color: #3289c488;
+                    width: 32%;
+                    padding: 6px;
+                    margin: 10px 0px;
+                    border: none;
+                    cursor: pointer;
+                    border-radius: 25px;
+                }   
+         form {   
+                background-color: #ffffff;
+                display:table;/* shrinks to fit content */
+                margin:auto;
+                max-width: 32rem;
+                width: 90%;
+
+            }   
+         input[type=text], input[type=password] {   
+                background: transparent;
+                border: 0;
+                border-style: none;
+                border-color: transparent;
+                outline: none;
+                outline-offset: 0;
+                box-shadow: none;
+            }  
+         button:hover {   
+                opacity: 0.7;   
+            }   
+          .cancelbtn {   
+                width: auto;   
+                padding: 10px 18px;  
+                margin: 10px 5px;  
+            }   
+                
+             
+         .container {   
+             
+                padding: 1.5rem;
+                background-color: #ffffff;
+            }   
+
+            #topDiv{
+                width: 100%;
+                margin-top: -20px;
+                height: 100%;
+            }
+
+            #bottomDiv{
+                display: flex;
+                align-items: flex-end;
+                flex-direction: column;
+            }
+        </style>   
+        </head> 
+        <script>
+            function btnCreateAccount(){
+                window.location.href = "indexNew.html";
+            }
+
+            function registerUser() {
+        if(validateForm() == true) {
+            let email = document.forms["myForm"]["email"].value;
+            let username = document.forms["myForm"]["username"].value;
+            let password = document.forms["myForm"]["password"].value;
+            window.auth.register(username, email, password, function (successful, errorCode, errorMessage) {
+                if (successful) {
+                    alert("Успешна регистрация");
+                    console.log("Sregister");
+                    window.location.href = "posts.html";
+                } else {
+                    var node = document.getElementById("errors");
+                    var content = document.createTextNode(errorMessage);
+                    node.appendChild(content);
+                    alert("Invalid input");
+                }
+            });
+        } else {
+            alert("Invalid input");
+        }
+}
+        </script>   
+        <body>    
+            <form name = "myForm" class="auth-form" id="register-form" onsubmit="registerUser();" method="POST">  
+                <div class="container">
+                    <div id="topDiv">   
+                        <h1>Flutter</h1>
+                        <h2 style="color: #848694;">Join the community</h2>
+                    </div>
+                    <div id="middleDiv">  
+                        <input type="text" placeholder="UserName" name="username" required>  
+                        <hr>   
+                        <input type="text" placeholder="Email" name="email" required>  
+                        <hr>   
+                        <input type="password" placeholder="Password" name="password" required>  
+                        <hr>
+                    </div>
+                    <div id="bottomDiv">
+                    <button type="submit">Submit</button>
+                </div>      
+                </div>   
+            </form>     
+        </body>     
+</html>
